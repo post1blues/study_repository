@@ -153,18 +153,25 @@ if __name__ == '__main__':
 
     objects_array = []  # массив обьектов сортировки
     result = {}  # словарь для результатов
-    length_of_test_array = 10000  # длина тестового массива
+    length_of_test_array = 1000  # длина тестового массива
+
+    test_arrays = []
+    while len(test_arrays) < 6:
+        test_array = [randint(1, 100) for _ in range(length_of_test_array)]
+        validate_obj = Validation(test_array)
+        if validate_obj.validate_data():
+            test_arrays.append(test_array)
 
     # добавляем в массив обьекты сортировки
-    objects_array.append(InsertionSort([randint(1, 100) for _ in range(length_of_test_array)]))
-    objects_array.append(BubbleSort([randint(1, 100) for _ in range(length_of_test_array)]))
-    objects_array.append(MergeSort([randint(1, 100) for _ in range(length_of_test_array)]))
-    objects_array.append(QuickSort([randint(1, 100) for _ in range(length_of_test_array)]))
-    objects_array.append(DefaultPythonSort([randint(1, 100) for _ in range(length_of_test_array)]))
+    objects_array.append(InsertionSort(test_arrays[0]))
+    objects_array.append(BubbleSort(test_arrays[1]))
+    objects_array.append(MergeSort(test_arrays[2]))
+    objects_array.append(QuickSort(test_arrays[3]))
+    objects_array.append(DefaultPythonSort(test_arrays[4]))
 
     # проходим по массивам и выполняем сортировку, замеряем время сортировки и добавляем результаты в словарь
     for obj in objects_array:
-        print(f'Sorting by {type(obj)}...' )
+        print(f'Sorting by {type(obj)}...')
         t1 = time()
         obj.get_sorted_array()
         t2 = time()
@@ -181,9 +188,7 @@ if __name__ == '__main__':
     # context = SortContext()
     # if context.current_sort is None:
     #     print('Current sort method is not set.')
-    #
-    # context.set_bubble_sort()
-    # bubble = context.current_sort(test_array)
+
 
 
 

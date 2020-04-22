@@ -101,8 +101,6 @@ if __name__ == '__main__':
 
     print('Users was added to PhoneBook')
 
-    print('Here are all users')
-
     for user in phone_book.users:
         print(user)
 
